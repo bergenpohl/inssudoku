@@ -1,9 +1,6 @@
 #include <stdint.h>
 #include <unistd.h>
 
-#include <time.h>
-#include <stdio.h>
-
 typedef enum	boolean_e {
 	false,
 	true
