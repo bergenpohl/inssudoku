@@ -279,12 +279,12 @@ void		sudoku(register char *board) {
 		index++;
 	} while (index < 81);
 
-SWITCH_BEGIN:	index--;
+GOTO_A:	index--;
 	switch (board[index]) {
 		case '0':
 			bin[index] = 0;
-			if (index == 0) goto FORTYTWO;
-			goto SWITCH_BEGIN;
+			if (index == 0) goto GOTO_B;
+			goto GOTO_A;
 		case '1':
 		case '2':
 		case '3':
@@ -296,28 +296,28 @@ SWITCH_BEGIN:	index--;
 		case '9':
 			if (valid(board, index, board[index]) == false) return;
 			bin[index] = 1;
-			if (index == 0) goto FORTYTWO;
-			goto SWITCH_BEGIN;
+			if (index == 0) goto GOTO_B;
+			goto GOTO_A;
 		default: return;
 	}
 	do {
-FORTYTWO:	if (bin[index] == 0) {
+GOTO_B:	if (bin[index] == 0) {
 			do {
-INSANITY:		board[index]++;
+GOTO_C:				board[index]++;
 				if (valid(board, index, board[index])) {
 					index++;
-					if (index < 81) goto FORTYTWO;
+					if (index < 81) goto GOTO_B;
 					return;
 				}
 			} while (board[index] < '9');
 			board[index] = '0';
 		
-SIXBYNINE:	if (index == 0) return;
+GOTO_D:			if (index == 0) return;
 			index--;
-			if (bin[index] == 1) goto SIXBYNINE;
-			if (board[index] < '9') goto INSANITY;
+			if (bin[index] == 1) goto GOTO_D;
+			if (board[index] < '9') goto GOTO_C;
 			board[index] = '0';
-			goto SIXBYNINE;
+			goto GOTO_D;
 		}
 		index++;
 	} while (index < 81);
