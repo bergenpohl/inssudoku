@@ -4,7 +4,7 @@
 typedef enum	boolean_e {
 	false,
 	true
-}					boolean_t;
+}		boolean_t;
 
 void		print(char *board) {
 	int i;
